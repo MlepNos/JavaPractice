@@ -3,18 +3,7 @@
 public class Main {
     public static void main(String[] args) {
 
-            int num= 1023;
-
-
-            while(num > 0) //do till num greater than  0
-            {
-                int mod = num % 10;
-                System.out.println(mod);
-                num = num / 10;
-            }
-
-
-
+        
     }
 
         /* 1_Area Calculator
