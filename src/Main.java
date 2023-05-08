@@ -3,7 +3,7 @@
 public class Main {
     public static void main(String[] args) {
 
-        
+
     }
 
         /* 1_Area Calculator
@@ -98,10 +98,7 @@ public static boolean isCatPlaying(boolean summer, int temperature){
     }else {
         return false;
     }
-
-
-
-
+    
 }
 
 
