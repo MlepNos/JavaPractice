@@ -3,7 +3,9 @@
 public class Main {
     public static void main(String[] args) {
 
-        SumFunction();
+       System.out.println(hasSharedDigit(12, 23));//→ should return true since the digit 2 appears in both numbers
+        System.out.println(hasSharedDigit(9, 99)); //→ should return false since 9 is not within the range of 10-99
+        System.out.println(hasSharedDigit(15, 55));// → should return true since the digit 5 appears in both numbers */
     }
 
 
@@ -234,6 +236,172 @@ sumOdd(100, 100); → should return 0
 sumOdd(13, 13); → should return 13 (This set contains one number, 13, and it is odd)
 sumOdd(100, -100); → should return -1
 sumOdd(100, 1000); → should return 247500 */
+
+public static boolean isOdd(int number){
+    if(number<0){
+        return false;
+    }else if(number % 2 !=0){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+public static int sumOdd(int start, int end){
+    if(end < start || start<=0 || end <=0){
+
+        return -1;
+    }
+    int sum=0;
+    for(int a = start; a <= end; a++){
+        if(isOdd(a)){
+            //System.out.println("odd number: " + a);
+            sum += a;
+        }
+    }
+    return sum;
+}
+
+/*  9_Number Palindrome
+Write a method called isPalindrome with one int parameter called number.The method needs to return a boolean.
+It should return true if the number is a palindrome number otherwise it should return false. Check the tips below for more info about palindromes.
+Tip: What is a Palindrome number?  A palindrome number is a number which when reversed is equal to the original number. For example: 121, 12321, 1001 etc.
+
+Example Input/Output
+isPalindrome(-1221); → should return true
+isPalindrome(707); → should return true
+isPalindrome(11212); → should return false because reverse is 21211 and that is not equal to 11212.
+
+Tip: Logic to check a palindrome number
+Find the the reverse of the given number. Store it in some variable say reverse. Compare the number with reverse.
+If both are the the same then the number is a palindrome otherwise it is not.
+
+Tip: Be careful with negative numbers. They can also be palindrome numbers.*/
+
+
+public static boolean isPalindrome(int number){
+    String NumString = Integer.toString(number);
+    NumString= NumString.replaceAll("[^0-9]", "");
+    int[] array = new int[NumString.length()+1];
+    int[] arrayReverse = new int[NumString.length()+1];
+    for(int b=0 ; b<NumString.length();b++){
+        array[b]= NumString.charAt(b) -48;
+    }
+    for(int b=0 ; b<NumString.length();b++){
+        arrayReverse[b]= array[NumString.length()-b-1];
+    }
+    for(int b=0 ; b<NumString.length();b++){
+        if(arrayReverse[b]!= array[b]){
+            return false;
+        };
+    }
+
+    return true;
+}
+
+/*  10_First And Last Digit Sum
+Write a method named sumFirstAndLastDigit with one parameter of type int called number.
+The method needs to find the first and the last digit of the parameter number passed to the method,
+using a loop and return the sum of the first and the last digit of that number.
+If the number is negative then the method needs to return -1 to indicate an invalid value.
+
+Example input/output
+sumFirstAndLastDigit(252); → should return 4, the first digit is 2 and the last is 2 which gives us 2+2 and the sum is 4.
+sumFirstAndLastDigit(257); → should return 9, the first digit is 2 and the last is 7 which gives us 2+7 and the sum is 9.
+sumFirstAndLastDigit(0); → should return 0, the first digit and the last digit is 0 since we only have 1 digit, which gives us 0+0 and the sum is 0.
+sumFirstAndLastDigit(5); → should return 10, the first digit and the last digit is 5 since we only have 1 digit, which gives us 5+5 and the sum is 10.
+sumFirstAndLastDigit(-10); → should return -1, since the parameter is negative and needs to be positive.
+*/
+
+public static int sumFirstAndLastDigit(int number){
+    if(number <0){
+        return -1;
+    }
+    int firstDigit=0;
+    int LastDigit = number % 10;
+    while(number!=0) {
+        firstDigit = number%10;
+        number /= 10;
+    }
+
+    return firstDigit+LastDigit;
+}
+
+
+/* 11_Even Digit Sum
+Write a method named getEvenDigitSum with one parameter of type int called number.
+The method should return the sum of the even digits within the number.
+If the number is negative, the method should return -1 to indicate an invalid value.
+
+EXAMPLE INPUT/OUTPUT:
+getEvenDigitSum(123456789); → should return 20 since 2 + 4 + 6 + 8 = 20
+getEvenDigitSum(252); → should return 4 since 2 + 2 = 4
+getEvenDigitSum(-22); → should return -1 since the number is negative */
+
+
+public static int getEvenDigitSum(int number){
+    if(number <0){
+        return -1;
+    }
+    int mod=0;
+    int counter = 0;
+    int sum=0;
+    while(number > 0)
+    {
+        mod = number % 10;
+        if(mod %2==0){
+            sum+= mod;
+        }
+        number = number / 10;
+        counter++;
+    }
+    return sum;
+}
+
+/*  12_Shared Digit
+Write a method named hasSharedDigit with two parameters of type int.
+Each number should be within the range of 10 (inclusive) - 99 (inclusive). If one of the numbers is not within the range, the method should return false.
+The method should return true if there is a digit that appears in both numbers, such as 2 in 12 and 23; otherwise, the method should return false.
+
+EXAMPLE INPUT/OUTPUT:
+hasSharedDigit(12, 23); → should return true since the digit 2 appears in both numbers
+hasSharedDigit(9, 99); → should return false since 9 is not within the range of 10-99
+hasSharedDigit(15, 55); → should return true since the digit 5 appears in both numbers */
+
+
+public static int[] intoArray(int num){
+    int mod=0;
+    int counter = 0;
+    int[] FirstArray = new int[2];
+    while(num > 0)
+    {
+        mod = num % 10;
+        FirstArray[counter]= mod;
+        num = num / 10;
+        counter++;
+    }
+    return FirstArray;
+}
+
+    public static boolean hasSharedDigit(int a, int b){
+        if(a<10 || a >99 || b<10 || b>99){
+        return false;
+    }
+        int[] FirstArray = new int[2];
+        FirstArray= intoArray(a);
+        int[] SecondArray = new int[2];
+        SecondArray= intoArray(b);
+
+    for(int i =0;i<=1;i++){
+       for(int y =0;y<=1;y++) {
+            if(FirstArray[i]== SecondArray[y]){
+                return true;
+            }
+       }
+    }
+    return false;
+    }
+
 
 
 
