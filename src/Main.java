@@ -1,11 +1,13 @@
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
+import java.util.Vector;
 public class Main {
     public static void main(String[] args) {
 
-       System.out.println(hasSharedDigit(12, 23));//→ should return true since the digit 2 appears in both numbers
-        System.out.println(hasSharedDigit(9, 99)); //→ should return false since 9 is not within the range of 10-99
-        System.out.println(hasSharedDigit(15, 55));// → should return true since the digit 5 appears in both numbers */
+        printFactors(6); //→ should print 1 2 3 6
+        printFactors(32);// → should print 1 2 4 8 16 32
+        printFactors(10); //→ should print 1 2 5 10
+        printFactors(-1); //→ should print "Invalid Value" since number is < 1
     }
 
 
@@ -403,11 +405,103 @@ public static int[] intoArray(int num){
     }
 
 
+    /* 13_Last Digit Checker
+    Write a method named hasSameLastDigit with three parameters of type int.
+    Each number should be within the range of 10 (inclusive) - 1000 (inclusive). If one of the numbers is not within the range, the method should return false.
+    The method should return true if at least two of the numbers share the same rightmost digit; otherwise, it should return false.
 
+    EXAMPLE INPUT/OUTPUT:
+    hasSameLastDigit (41, 22, 71); → should return true since 1 is the rightmost digit in numbers 41 and 71
+    hasSameLastDigit (23, 32, 42); → should return true since 2 is the rightmost digit in numbers 32 and 42
+    hasSameLastDigit (9, 99, 999); → should return false since 9 is not within the range of 10-1000
 
+    Write another method named isValid with one parameter of type int.
+    The method needs to return true if the number parameter is in range of 10(inclusive) - 1000(inclusive), otherwise return false.
 
+    EXAMPLE INPUT/OUTPUT
+    isValid(10); → should return true since 10 is within the range of 10-1000
+    isValid(468); → should return true since 468 is within the range of 10-1000
+    isValid(1051); → should return false since 1051 is not within the range of 10-1000
+   */
 
+    public static boolean hasSameLastDigit(int a, int b , int c){
+        if(!isValid(a) || !isValid(a) || !isValid(b))
+        {
+            return false;
+        }
 
+        Vector<Integer> Intvector= new Vector<>();
+        Intvector= Intoarray(a);
+        int LastDigitA =Intvector.get(1);
+
+        Vector<Integer> Intvector2= new Vector<>();
+        Intvector2= Intoarray(b);
+        int LastDigitB =Intvector2.get(1);
+
+        Vector<Integer> Intvector3= new Vector<>();
+        Intvector3= Intoarray(c);
+        int LastDigitC =Intvector3.get(1);
+
+        if(LastDigitA == LastDigitB || LastDigitA == LastDigitC || LastDigitB == LastDigitC)
+        {
+            return false;
+        }
+        //System.out.println(Intvector.get(1));
+        return true;
+    }
+    public static boolean isValid(int num){
+        if(num > 1000 || num < 10){
+            return false;
+        }
+        return true;
+    }
+
+    public static Vector<Integer> Intoarray(int num){
+        int mod=0;
+        int counter = 0;
+        Vector<Integer> Intvector= new Vector<>();
+        while(num > 0)
+        {
+            mod = num % 10;
+            Intvector.add(mod);
+            num = num / 10;
+            counter++;
+        }
+
+        return Intvector;
+    }
+
+/*
+14_All Factors
+Write a method named printFactors with one parameter of type int named number. If number is < 1, the method should print "Invalid Value".
+The method should print all factors of the number. A factor of a number is an integer which divides that number wholly (i.e. without leaving a remainder).
+For example, 3 is a factor of 6 because 3 fully divides 6 without leaving a remainder. In other words 6 / 3 = 2.
+
+EXAMPLE INPUT/OUTPUT:
+printFactors(6); → should print 1 2 3 6
+printFactors(32); → should print 1 2 4 8 16 32
+printFactors(10); → should print 1 2 5 10
+printFactors(-1); → should print "Invalid Value" since number is < 1
+
+HINT: Use a while or for loop.
+For example, the printout for printFactors(10); can be:
+1
+2
+5
+10 */
+
+public static void printFactors(int number){
+    Vector<Integer> Intvector= new Vector<>();
+    if(number < 1){
+        System.out.println("Invalid Value");
+    }
+    for(int i=1; i<=number ;i++){
+      if(number % i == 0){
+          Intvector.add(i);
+      }
+    }
+   System.out.println(Intvector);
+}
 
 
 
