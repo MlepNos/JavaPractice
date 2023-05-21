@@ -1,13 +1,15 @@
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
+
+import java.util.Scanner;
 import java.util.Vector;
 public class Main {
     public static void main(String[] args) {
+        inputThenPrintSumAndAverage();
 
-        printFactors(6); //→ should print 1 2 3 6
-        printFactors(32);// → should print 1 2 4 8 16 32
-        printFactors(10); //→ should print 1 2 5 10
-        printFactors(-1); //→ should print "Invalid Value" since number is < 1
+
+
+
     }
 
 
@@ -28,7 +30,7 @@ For formulas and PI value please check the tips below.
             if(radius < 0){
                 return -1;
             }
-            return Math.PI * Math.pow(radius,2);
+            return java.lang.Math.PI * java.lang.Math.pow(radius,2);
         }
         public static double area(double x,double y){
             if(x<0 || y<0){
@@ -431,15 +433,15 @@ public static int[] intoArray(int num){
         }
 
         Vector<Integer> Intvector= new Vector<>();
-        Intvector= Intoarray(a);
+        Intvector= IntoVector(a);
         int LastDigitA =Intvector.get(1);
 
         Vector<Integer> Intvector2= new Vector<>();
-        Intvector2= Intoarray(b);
+        Intvector2= IntoVector(b);
         int LastDigitB =Intvector2.get(1);
 
         Vector<Integer> Intvector3= new Vector<>();
-        Intvector3= Intoarray(c);
+        Intvector3= IntoVector(c);
         int LastDigitC =Intvector3.get(1);
 
         if(LastDigitA == LastDigitB || LastDigitA == LastDigitC || LastDigitB == LastDigitC)
@@ -456,7 +458,7 @@ public static int[] intoArray(int num){
         return true;
     }
 
-    public static Vector<Integer> Intoarray(int num){
+    public static Vector<Integer> IntoVector(int num){
         int mod=0;
         int counter = 0;
         Vector<Integer> Intvector= new Vector<>();
@@ -471,8 +473,7 @@ public static int[] intoArray(int num){
         return Intvector;
     }
 
-/*
-14_All Factors
+/* 14_All Factors
 Write a method named printFactors with one parameter of type int named number. If number is < 1, the method should print "Invalid Value".
 The method should print all factors of the number. A factor of a number is an integer which divides that number wholly (i.e. without leaving a remainder).
 For example, 3 is a factor of 6 because 3 fully divides 6 without leaving a remainder. In other words 6 / 3 = 2.
@@ -483,12 +484,8 @@ printFactors(32); → should print 1 2 4 8 16 32
 printFactors(10); → should print 1 2 5 10
 printFactors(-1); → should print "Invalid Value" since number is < 1
 
-HINT: Use a while or for loop.
 For example, the printout for printFactors(10); can be:
-1
-2
-5
-10 */
+1 2 5 10 */
 
 public static void printFactors(int number){
     Vector<Integer> Intvector= new Vector<>();
@@ -502,6 +499,481 @@ public static void printFactors(int number){
     }
    System.out.println(Intvector);
 }
+
+
+
+
+/* 15_Greatest Common Divisor
+Write a method named getGreatestCommonDivisor with two parameters of type int named first and second.
+If one of the parameters is < 10, the method should return -1 to indicate an invalid value.
+The method should return the greatest common divisor of the two numbers (int).
+The greatest common divisor is the largest positive integer that can fully divide each of the integers (i.e. without leaving a remainder).
+
+For example 12 and 30:
+12 can be divided by 1, 2, 3, 4, 6, 12
+30 can be divided by 1, 2, 3, 5, 6, 10, 15, 30
+The greatest common divisor is 6 since both 12 and 30 can be divided by 6, and there is no resulting remainder.
+
+EXAMPLE INPUT/OUTPUT:
+getGreatestCommonDivisor(25, 15); should return 5 since both can be divided by 5 without a remainder
+getGreatestCommonDivisor(12, 30); should return 6 since both can be divided by 6 without a remainder
+getGreatestCommonDivisor(9, 18); should return -1 since the first parameter is < 10
+getGreatestCommonDivisor(81, 153); should return 9 since both can be divided by 9 without a remainder
+
+*/
+
+public static int getGreatestCommonDivisor(int first, int second){
+
+    if(first <10 || second < 10 ){
+        return -1;
+    }
+
+    int Less = (first == second) ||(first < second) ? first : second;
+    while(Less >0){
+
+        if(first % Less == 0 && second % Less ==0){
+            return Less;
+        }
+        Less--;
+    }
+
+  return -1;
+}
+
+/*  16_Perfect Number
+What is the perfect number?
+A perfect number is a positive integer which is equal to the sum of its proper positive divisors.
+Proper positive divisors are positive integers that fully divide the perfect number without leaving a remainder and exclude the perfect number itself.
+For example, take the number 6:
+Its proper divisors are 1, 2, and 3 (since 6 is the value of the perfect number, it is excluded), and the sum of its proper divisors is 1 + 2 + 3 = 6.
+Therefore, 6 is a perfect number (as well as the first perfect number).
+Write a method named isPerfectNumber with one parameter of type int named number.
+If number is < 1, the method should return false.
+The method must calculate if the number is perfect. If the number is perfect, the method should return true; otherwise, it should return false.
+
+EXAMPLE INPUT/OUTPUT:
+isPerfectNumber(6); should return true since its proper divisors are 1, 2, 3 and the sum is 1 + 2 + 3 = 6
+isPerfectNumber(28); should return true since its proper divisors are 1, 2, 4, 7, 14 and the sum is 1 + 2 + 4 + 7 + 14 = 28
+isPerfectNumber(5); should return false since its only proper divisor is 1 and the sum is 1 not 5
+isPerfectNumber(-1); should return false since the number is < 1    */
+
+    public static boolean isPerfectNumber(int number){
+        Vector<Integer> Intvector= new Vector<>();
+        if(number <1 ){
+            return false;
+        }
+        int counter = number -1;
+        while(counter >0){
+            if(number % counter== 0){
+                Intvector.add(counter);
+            }
+                counter--;
+        }
+        int sum =0;
+        for(int i=0;i< Intvector.size(); i++){
+            sum += Intvector.get(i);
+        }
+        if(sum == number){
+            return true;
+        }
+        return false;
+    }
+
+
+/* 17_Number To Words
+Write a method called numberToWords with one int parameter named number.
+The method should print out the passed number using words for the digits.
+If the number is negative, print "Invalid Value".
+To print the number as words, follow these steps:
+Extract the last digit of the given number using the remainder operator.
+Convert the value of the digit found in Step 1 into a word. There are 10 possible values for that digit,
+those being 0, 1, 2, 3, 4, 5, 6, 7, 8, 9. Print the corresponding word for each digit, e.g. print "Zero" if the digit is 0, "One" if the digit is 1, and so on.
+Remove the last digit from the number.Repeat Steps 2 through 4 until the number is 0.
+The logic above is correct, but in its current state, the words will be printed in reverse order. For example,
+if the number is 234, the logic above will produce the output "Four Three Two" instead of "Two Three Four".
+To overcome this problem, write a second method called reverse.
+The method reverse should have one int parameter and return the reversed number (int). For example, if the number passed is 234, then the reversed number would be 432.
+The method  reverse should also reverse negative numbers.
+Use the method reverse within the method numberToWords in order to print the words in the correct order.
+Another thing to keep in mind is any reversed number with leading zeroes (e.g. the reversed number for 100 is 001).
+The logic above for the method numberToWords will print "One", but that is incorrect. It should print "One Zero Zero".
+To solve this problem, write a third method called getDigitCount.
+The method getDigitCount should have one int parameter called number and return the count of the digits in that number.
+ If the number is negative, return -1 to indicate an invalid value.
+For example, if the number has a value of 100, the method getDigitCount should return 3 since the number 100 has 3 digits (1, 0, 0).
+
+Example Input/Output - getDigitCount method
+getDigitCount(0); should return 1 since there is only 1 digit
+getDigitCount(123); should return 3
+getDigitCount(-12); should return -1 since the parameter is negative
+getDigitCount(5200); should return 4 since there are 4 digits in the number
+
+Example Input/Output - reverse method
+reverse(-121); should  return -121
+reverse(1212); should return  2121
+reverse(1234); should return 4321
+reverse(100); should return 1
+
+Example Input/Output - numberToWords method
+numberToWords(123); should print "One Two Three".
+numberToWords(1010); should print "One Zero One Zero".
+numberToWords(1000); should print "One Zero Zero Zero".
+numberToWords(-12); should print "Invalid Value" since the parameter is negative.
+
+HINT: Use a for loop to print zeroes after reversing the number. As seen in a previous example, 100 reversed becomes 1, but the method numberToWords should print
+"One Zero Zero". To get the number of zeroes, check the difference between the digit count from the original number and the reversed number.
+NOTE: When printing words, each word can be in its own line. For example, numberToWords(123); can be:
+One
+Two
+Three
+They don't have to be separated by a space.*/
+
+    public static int getDigitCount(int number){
+       if(number <0) {
+           return -1;
+       }
+       int mod=0;
+       int counter = 0;
+       while(number > 0)
+       {
+            mod = number % 10;
+            number = number / 10;
+            counter++;
+       }
+       return counter;
+    }
+    public static int reverse(int number){
+        int reverseNumber = 0;
+
+        while (number != 0) {
+            reverseNumber = (reverseNumber * 10) + (number % 10);
+            number /= 10;
+        }
+        return reverseNumber;
+    }
+
+
+    public static void  numberToWords(int number) {
+        if (number < 0) {
+            System.out.println("Invalid Value");
+        }
+
+        int reverse = reverse(number);
+
+
+        for (int i = 0; i < getDigitCount(number); i++) {
+
+            switch (reverse % 10) {
+                case 0:
+                    System.out.print("Zero ");
+                    break;
+                case 1:
+                    System.out.print("One ");
+                    break;
+                case 2:
+                    System.out.print("Two ");
+                    break;
+                case 3:
+                    System.out.print("Three ");
+                    break;
+                case 4:
+                    System.out.print("Four ");
+                    break;
+                case 5:
+                    System.out.print("Five ");
+                    break;
+                case 6:
+                    System.out.print("Six ");
+                    break;
+                case 7:
+                    System.out.print("Seven ");
+                    break;
+                case 8:
+                    System.out.print("Eight ");
+                    break;
+                case 9:
+                    System.out.print("Nine ");
+                    break;
+                default:
+                    break;
+            }
+            reverse /= 10;
+        }
+        System.out.println();
+    }
+
+
+/* 18_Largest Prime
+Write a method named getLargestPrime with one parameter of type int named number.
+If the number is negative or does not have any prime numbers, the method should return -1 to indicate an invalid value.
+The method should calculate the largest prime factor of a given number and return it.
+
+EXAMPLE INPUT/OUTPUT:
+getLargestPrime (21); should return 7 since 7 is the largest prime (3 * 7 = 21)
+getLargestPrime (217); should return 31 since 31 is the largest prime (7 * 31 = 217)
+getLargestPrime (0); should return -1 since 0 does not have any prime numbers
+getLargestPrime (45); should return 5 since 5 is the largest prime (3 * 3 * 5 = 45)
+getLargestPrime (-1); should return -1 since the parameter is negative
+
+HINT: Since the numbers 0 and 1 are not considered prime numbers, they cannot contain prime numbers. */
+
+
+public static int getLargestPrime(int number){
+    int counter = number ;
+    int largestPrime=0;
+    if (number <= 0) {
+       return -1;
+    }
+    while(counter>1){
+        if(number % counter ==0 && isPrime(counter)){
+            return counter;
+        }
+        counter--;
+    }
+
+  return -1;
+}
+
+    public static boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= java.lang.Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /* 19_Diagonal Star
+Write a method named printSquareStar with one parameter of type int named number.
+If number is < 5, the method should print "Invalid Value".
+The method should print diagonals to generate a rectangular pattern composed of stars (*). This should be accomplished by using loops (see examples below).
+
+EXAMPLE INPUT/OUTPUT:
+EXAMPLE 1
+printSquareStar(5); should print the following:
+*****
+** **
+* * *
+** **
+*****
+
+Explanation:
+*****   5 stars
+** **   2 stars space 2 stars
+* * *   1 star space 1 star space 1 star
+** **   2 stars space 2 stars
+*****   5 stars
+
+
+EXAMPLE 2
+printSquareStar(8); should print the following:
+********
+**    **
+* *  * *
+*  **  *
+*  **  *
+* *  * *
+**    **
+********
+
+The patterns above consist of a number of rows and columns (where number is the number of rows to print). For each row or column, stars are printed based on four conditions (Read them carefully):
+In the first or last row
+In the first or last column
+When the row number equals the column number
+When the column number equals rowCount - currentRow + 1 (where currentRow is current row number)
+
+HINT: To print on the same line, use the print method instead of println, e.g. System.out.print(" "); prints a space and does not "move" to another line.
+HINT: To "move" to another line, you can use an empty println call, e.g. System.out.println(); */
+
+public static void printSquareStar(int number){
+    if (number < 5) {
+        System.out.println("Invalid Value");
+    }else{
+        for(int row=0;row < number;row++){
+            for(int column=0;column<number;column++){
+
+                if(column==0 || column == number-1 || row==0 || row==number-1 || column==row  || row== number-1-column ){
+
+                    System.out.print("*");
+                }else{
+                    System.out.print(" ");    // r 1 c 3       r 3  c 1
+                }
+            }
+            System.out.println();
+        }
+    }
+}
+/*
+20_
+    In this challenge, you'll read 5 valid numbers from the console, entered by the user, and print the sum of those five numbers.
+    You'll want to check that the numbers entered, are valid integers.
+    If not,  print out the message "Invalid number" to the console, but continue looping, until you do have 5 valid numbers.
+    Before the user enters each number, prompt them with the message, "Enter number #x:", where x represents the count, 1, 2, 3, etc.
+    And as an example there, the first message would look something like,"Enter number #1:", the next, "Enter number #2:", and so on.*/
+
+    /*
+    Scanner scanner = new Scanner(System.in);
+    int sum=0;
+    int counter=1;
+        while(counter<=5){
+        System.out.println("Enter Number: "+ counter);
+        String Stringnumber = scanner.nextLine();
+        try{
+            int number = Integer.parseInt(Stringnumber);
+            sum += number;
+            counter++;
+        }catch (NumberFormatException nfe){
+            System.out.println("Invalid Number");
+        }
+    };
+        System.out.println("The Sum of the Numbers is: "+ sum);
+
+    */
+
+    /* 21
+    You'll be using an endless loop which:
+    Prompts the user to enter a number, or any character to quit.
+    Validates if the user-entered data really is a number, you can choose either an integer, or double validation method.
+    If the user-entered data is not a number, quit the loop.
+    Keep track of the minimum number entered.
+    Keep track of the maximum number entered.
+    If the user has previously entered a set of numbers (or even just one), display the minimum, and maximum number, which the user entered.
+
+     */
+     /*
+    boolean isValid=true;
+    int min = 0;
+    int max = 0;
+    Scanner scanner = new Scanner(System.in);
+        while(isValid){
+
+        String Stringnumber = scanner.nextLine();
+        try{
+            int number = Integer.parseInt(Stringnumber);
+            if(number >= max){
+                max = number;
+            }else if(number <= min){
+                min = number;
+            }
+        }catch(NumberFormatException nfe){
+            isValid=false;
+        }
+    }
+        System.out.println("The Max Number is : "+ max);
+        System.out.println("The Min Number is : "+ min);
+
+    */
+
+/* 22_Input Calculator
+Write a method called inputThenPrintSumAndAverage that does not have any parameters.
+The method should not return anything (void) and it needs to keep reading int numbers from the keyboard.
+When the user enters something that is not an int then it needs to print a message in the format "SUM = XX AVG = YY".
+XX represents the sum of all entered numbers of type int.
+YY represents the calculated average of all numbers of type long.
+
+EXAMPLES OF INPUT/OUTPUT:
+EXAMPLE 1:
+INPUT:
+1
+2
+3
+4
+5
+a
+OUTPUT
+SUM = 15 AVG = 3
+
+TIP: Use Scanner to read an input from the user.
+TIP: Use casting when calling the round method since it needs double as a parameter.
+NOTE: Use the method Math.round to round the calculated average (double). The method round returns long.*/
+
+public static void inputThenPrintSumAndAverage() {
+    Scanner scanner = new Scanner(System.in);
+    int sum=0;
+    double count=0;
+    boolean isValid=true;
+    while(isValid){
+        String StringNumber = scanner.nextLine();
+
+        try{
+             sum += Double.parseDouble(StringNumber);
+             count++;
+
+        }catch(NumberFormatException nfe){
+            isValid=false;
+        }
+    }
+    System.out.println("SUM = " + java.lang.Math.round(sum) + " AVG = " + java.lang.Math.round((double) sum/count));
+    System.out.println("SUM = " + sum + " AVG = " +  sum/count);
+    //scanner.close();   -2.5 --> -2
+
+}
+
+/* 23  Paint Job
+Bob is a wall painter and he needs your help. You have to write a program that helps Bob calculate how many buckets of paint he needs to buy before going to work.
+Bob might also have some extra buckets at home. He also knows the area that he can cover with one bucket of paint.
+1. Write a method named getBucketCount with 4 parameters. The first parameter should be named width of type double. This parameter represents the width of the wall.
+The second parameter should be named height of type double. This parameter represents the height of the wall.
+The third parameter should be named areaPerBucket. This parameter represents the area that can be covered with one bucket of paint.
+The fourth parameter should be named extraBuckets. This parameter represents the bucket count that Bob has at home.
+The method needs to return a value of type int that represents the number of buckets that Bob needs to buy before going to work. To calculate the bucket count, refer to the notes below.
+
+If one of the parameters width, height or areaPerBucket is less or equal to 0 or if extraBuckets is less than 0, the method needs to return -1 to indicate an invalid value.
+If all parameters are valid, the method needs to calculate the number of buckets and return it.
+
+Examples of input/output:
+getBucketCount(-3.4, 2.1, 1.5, 2); → should return -1 since the width parameter is invalid
+getBucketCount(3.4, 2.1, 1.5, 2); → should return 3 since the wall area is 7.14, a single bucket can cover an area of 1.5 and Bob has 2 extra buckets home.
+getBucketCount(2.75, 3.25, 2.5, 1); → should return 3 since the wall area is 8.9375, a single bucket can cover an area of 2.5 and Bob has 1 extra bucket at home.
+
+2. Bob does not like to enter 0 for the extraBuckets parameter so he needs another method.
+Write another overloaded method named getBucketCount with 3 parameters namely width, height, and areaPerBucket (all of type double).
+This method needs to return a value of type int that represents the number of buckets that Bob needs to buy before going to work.
+To calculate the bucket count, refer to the notes below.
+If one of the parameters width, height or areaPerBucket is less or equal to 0, the method needs to return -1 to indicate an invalid value.
+If all parameters are valid, the method needs to calculate the number of buckets and return it.
+
+Examples of input/output:
+getBucketCount(-3.4, 2.1, 1.5); → should return -1 since the width parameter is invalid
+getBucketCount(3.4, 2.1, 1.5); → should return 5 since the wall area is 7.14, and a single bucket can cover an area of 1.5.
+getBucketCount(7.25, 4.3, 2.35); → should return 14 since the wall area is 31.175, and a single bucket can cover an area of 2.35.
+
+3. In some cases, Bob does not know the width and height of the wall but he knows the area of a wall. He needs you to write another method.
+Write another overloaded method named getBucketCount with 2 parameters namely, area and areaPerBucket (both of type double).
+The method needs to return a value of type int that represents the number of buckets that Bob needs to buy before going to work.
+To calculate the bucket count, refer to the notes below.
+If one of the parameters area or areaPerBucket is less or equal to 0, the method needs to return -1to indicate an invalid value.
+If all parameters are valid, the method needs to calculate the number of buckets and return it.
+
+Examples of input/output:
+getBucketCount(3.4, 1.5); → should return 3 since the area is 3.4 and a single bucket can cover an area of 1.5
+getBucketCount(6.26, 2.2); → should return 3 since the wall area is 6.26 and a single bucket can cover an area of 2.2.
+getBucketCount(3.26, 0.75); → should return 5 since the wall area is 3.26, and a single bucket can cover an area of 0.75 .
+
+NOTE: Use the method Math.ceil to round the number of calculated buckets (double) then convert it into an int before returning the value from the methods.*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
