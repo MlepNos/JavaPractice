@@ -5,9 +5,6 @@ import java.util.Scanner;
 import java.util.Vector;
 public class Main {
     public static void main(String[] args) {
-        inputThenPrintSumAndAverage();
-
-
 
 
     }
@@ -912,48 +909,37 @@ public static void inputThenPrintSumAndAverage() {
 
 }
 
-/* 23  Paint Job
-Bob is a wall painter and he needs your help. You have to write a program that helps Bob calculate how many buckets of paint he needs to buy before going to work.
-Bob might also have some extra buckets at home. He also knows the area that he can cover with one bucket of paint.
-1. Write a method named getBucketCount with 4 parameters. The first parameter should be named width of type double. This parameter represents the width of the wall.
-The second parameter should be named height of type double. This parameter represents the height of the wall.
-The third parameter should be named areaPerBucket. This parameter represents the area that can be covered with one bucket of paint.
-The fourth parameter should be named extraBuckets. This parameter represents the bucket count that Bob has at home.
-The method needs to return a value of type int that represents the number of buckets that Bob needs to buy before going to work. To calculate the bucket count, refer to the notes below.
+/* 23  Classes Challange  (Account Class)
+Create a new class for a bank account.
+Create fields for account characteristics like:
+-account number
+-account balance
+-customer name
+-email
+-phone number
 
-If one of the parameters width, height or areaPerBucket is less or equal to 0 or if extraBuckets is less than 0, the method needs to return -1 to indicate an invalid value.
-If all parameters are valid, the method needs to calculate the number of buckets and return it.
+Create getters and setters for each field.
+Create two additional methods:
+-one for depositing funds into the account
+-one for withdrawing funds from the account
 
-Examples of input/output:
-getBucketCount(-3.4, 2.1, 1.5, 2); → should return -1 since the width parameter is invalid
-getBucketCount(3.4, 2.1, 1.5, 2); → should return 3 since the wall area is 7.14, a single bucket can cover an area of 1.5 and Bob has 2 extra buckets home.
-getBucketCount(2.75, 3.25, 2.5, 1); → should return 3 since the wall area is 8.9375, a single bucket can cover an area of 2.5 and Bob has 1 extra bucket at home.
+A customer should not be allowed to withdraw funds, if that withdrawal takes their balance negative.
+You'll create an instance of an Account class, and then test your withdraw and deposit methods.
+You'll print information to the console, that confirms what the balance is after the methods are called.
 
-2. Bob does not like to enter 0 for the extraBuckets parameter so he needs another method.
-Write another overloaded method named getBucketCount with 3 parameters namely width, height, and areaPerBucket (all of type double).
-This method needs to return a value of type int that represents the number of buckets that Bob needs to buy before going to work.
-To calculate the bucket count, refer to the notes below.
-If one of the parameters width, height or areaPerBucket is less or equal to 0, the method needs to return -1 to indicate an invalid value.
-If all parameters are valid, the method needs to calculate the number of buckets and return it.
+Main CODE:
 
-Examples of input/output:
-getBucketCount(-3.4, 2.1, 1.5); → should return -1 since the width parameter is invalid
-getBucketCount(3.4, 2.1, 1.5); → should return 5 since the wall area is 7.14, and a single bucket can cover an area of 1.5.
-getBucketCount(7.25, 4.3, 2.35); → should return 14 since the wall area is 31.175, and a single bucket can cover an area of 2.35.
+  Account account = new Account();
 
-3. In some cases, Bob does not know the width and height of the wall but he knows the area of a wall. He needs you to write another method.
-Write another overloaded method named getBucketCount with 2 parameters namely, area and areaPerBucket (both of type double).
-The method needs to return a value of type int that represents the number of buckets that Bob needs to buy before going to work.
-To calculate the bucket count, refer to the notes below.
-If one of the parameters area or areaPerBucket is less or equal to 0, the method needs to return -1to indicate an invalid value.
-If all parameters are valid, the method needs to calculate the number of buckets and return it.
+        account.setBalance(10000);
+        System.out.println(account.getBalance());
 
-Examples of input/output:
-getBucketCount(3.4, 1.5); → should return 3 since the area is 3.4 and a single bucket can cover an area of 1.5
-getBucketCount(6.26, 2.2); → should return 3 since the wall area is 6.26 and a single bucket can cover an area of 2.2.
-getBucketCount(3.26, 0.75); → should return 5 since the wall area is 3.26, and a single bucket can cover an area of 0.75 .
+        account.DepositInto(400);
+        account.Withdraw(20000);
+        account.Withdraw(200);
+        account.Withdraw(200.5543);
 
-NOTE: Use the method Math.ceil to round the number of calculated buckets (double) then convert it into an int before returning the value from the methods.*/
+ */
 
 
 
